@@ -5,25 +5,27 @@ import Result from './components/Result';
 import QuizDetail from './components/QuizDetail';
 
 function App() {
-  const [showQuiz, setShowQuiz] = useState(true);
+  const [step, setStep] = useState('detail'); // 'detail', 'quiz', 'result'
+  const [username, setUsername] = useState('');
   const [score, setScore] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
 
-  const handleFinish = (quizScore, totalQuestions) => {
+  const handleStartQuiz = (name) => {
+    setUsername(name);
+    setStep('quiz');
+  };
+
+  const handleFinishQuiz = (quizScore, totalQuestions) => {
     setScore(quizScore);
     setTotalQuestions(totalQuestions);
-    setShowQuiz(false);
+    setStep('result');
   };
 
   return (
     <>
-  
-      {showQuiz ? (
-        <Quiz onFinish={handleFinish} />
-      ) : (
-        <Result score={score} totalQuestions={totalQuestions} />
-      )}
-     
+      {step === 'detail' && <QuizDetail onStartQuiz={handleStartQuiz} />}
+      {step === 'quiz' && <Quiz onFinish={handleFinishQuiz} />}
+      {step === 'result' && <Result username={username} score={score} totalQuestions={totalQuestions} />}
     </>
   );
 }

@@ -6,11 +6,22 @@ export default function Quiz({ onFinish }) {
   const [index, setIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState(Array(htmlQuiz.length).fill(null));
   const [answeredQuestions, setAnsweredQuestions] = useState(Array(htmlQuiz.length).fill(false));
-  const [timeLeft, setTimeLeft] = useState(300); // 5 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(5 *60); // 5 minutes in seconds
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
 
+  // Update score based on new selection
+  const updateScore = (prevAnswer, newAnswer, correctAnswer) => {
+    if (prevAnswer === correctAnswer) {
+      setScore(prevScore => prevScore - 1); // Deduct if previously counted as correct
+    }
+    if (newAnswer === correctAnswer) {
+      setScore(prevScore => prevScore + 1); // Add if new answer is correct
+    }
+  };
+
   const handleFinish = useCallback(() => {
+    // Ensure the result is displayed even if time runs out
     setShowScore(true);
     onFinish(score, htmlQuiz.length); // Pass score and total questions to parent
   }, [onFinish, score]);
@@ -18,7 +29,7 @@ export default function Quiz({ onFinish }) {
   useEffect(() => {
     if (timeLeft > 0) {
       const timer = setTimeout(() => {
-        setTimeLeft(timeLeft - 1);
+        setTimeLeft(prevTimeLeft => prevTimeLeft - 1);
       }, 1000);
       return () => clearTimeout(timer);
     } else {
@@ -29,15 +40,22 @@ export default function Quiz({ onFinish }) {
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-    return `${minutes} : ${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+  };
+
+  const allQuestionsAnswered = () => {
+    return selectedAnswers.every(answer => answer !== null);
   };
 
   const next = () => {
     const currentQuestion = htmlQuiz[index];
-    if (selectedAnswers[index] === currentQuestion.ans) {
-      setScore(prevScore => prevScore + 1);
-    }
+    const prevAnswer = selectedAnswers[index];
+    const correctAnswer = currentQuestion.ans;
 
+    // Update score if needed
+    updateScore(prevAnswer, selectedAnswers[index], correctAnswer);
+
+    // Mark the current question as answered
     const newAnsweredQuestions = [...answeredQuestions];
     newAnsweredQuestions[index] = true;
     setAnsweredQuestions(newAnsweredQuestions);
@@ -57,8 +75,21 @@ export default function Quiz({ onFinish }) {
 
   const handleAnswerSelect = (answer) => {
     const newSelectedAnswers = [...selectedAnswers];
+    const prevAnswer = newSelectedAnswers[index];
     newSelectedAnswers[index] = answer;
+
+    // Update score based on previous and new answers
+    updateScore(prevAnswer, answer, htmlQuiz[index].ans);
+
     setSelectedAnswers(newSelectedAnswers);
+  };
+
+  const handleNextClick = () => {
+    if (index === htmlQuiz.length - 1 && !allQuestionsAnswered()) {
+      alert("Please answer all questions before finishing the quiz.");
+      return;
+    }
+    next();
   };
 
   const question = htmlQuiz[index];
@@ -137,7 +168,7 @@ export default function Quiz({ onFinish }) {
             </div>
             <div className="btns">
               <button className='btn1' onClick={prev} disabled={index === 0}>Prev</button>
-              <button className='btn2' onClick={next} disabled={false}>Next</button>
+              <button className='btn2' onClick={handleNextClick} disabled={false}>Next</button>
             </div>
           </div>
         </section>
