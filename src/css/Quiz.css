@@ -1,0 +1,305 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(34, 32, 32);
+}
+.hero{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 80px;
+    display: none;
+   
+
+}
+.box{
+    width: 550px;
+    padding: 20px;
+    border: 1px solid #51cc51;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.header{
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bolder;
+    padding: 5px;
+    border: 3px solid #51cc51;
+}
+.instruction{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+.instruction > ul{
+    list-style: none;
+}
+.instruction > ul > li{
+    color: silver;
+    font-size: 1rem;
+padding: 5px;    
+}
+.inp-user{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+.inp-user > input{
+    width: 280px;
+    padding: 10px 10px;
+    font-size: 0.8rem;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #51cc51;
+    text-align: center;
+    color: white;
+}
+.inp-user > input::placeholder{
+    color: #e0e0e0;
+}
+.inp-user > input:focus{
+    outline: none;
+}
+.startBtn{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+.startBtn > button{
+    padding: 6px 12px;
+    text-align: center;
+    border: none;
+    background-color: yellow;
+    color: black;
+    font-size: 1rem;
+}
+.QuizSec{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 80px;
+    /* display: none; */
+}
+.box{
+    width: 550px;
+    padding: 20px;
+    border: 1px solid #51cc51;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.header{
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bolder;
+    padding: 5px;
+    border: 3px solid #51cc51;
+}
+.que-time{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.que{
+   width: 75%;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bolder;
+    color: white;
+}
+.timer{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #51cc51;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    padding: 5px;
+    }
+.opt{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color:silver;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.opt > input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+}
+
+.opt > input[type="radio"]:checked::before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: #51cc51;
+    border-radius: 50%;
+   
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.opt > input[type="radio"]:focus {
+    background-color: #51cc51;
+    border: #51cc51;
+    outline: none;
+}
+
+.btns{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.btns > .btn1{
+padding: 6px 15px;
+text-align: center;
+font-size: 1rem;
+border: none;
+background-color: yellow;
+color: black;
+cursor: pointer;
+
+}
+.btns > .btn2{
+    padding: 6px 15px;
+    text-align: center;
+    font-size: 1rem;
+    border: none;
+    background-color: #51cc51;
+    color: black;
+    cursor: pointer;
+    }
+    .main{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 80px;
+        display: none;
+    }
+    .boxes{
+        width: 550px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+    .header{
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 2rem;
+        font-weight: bolder;
+        padding: 5px;
+        border: 3px solid #51cc51;
+    }
+.info{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    border: 1px solid silver;
+    padding: 20px;
+}
+.tit{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.name{
+    color: silver;
+    font-size: 1rem;
+}
+.val{
+    color: silver;
+    font-size: 1rem;
+}
+.green{
+    color: #51cc51;
+}
+@media (max-width:500px){
+    .hero, .QuizSec, .main{
+        padding: 20px;
+    }
+    .box,.boxes{
+        width: 300px;
+        gap: 20px;
+    }
+    .header{
+        font-size: 1.2rem;
+    }
+    .que{
+        font-size: 0.8rem;
+    }
+    .opt{
+        font-size: 0.7rem;
+    }
+    .instruction > ul > li{
+        font-size: 0.8rem;
+        
+
+       
+    }
+    .inp-user > input{
+        width: 250px;
+        font-size: 0.8rem;
+    }
+    .name{
+        font-size: 0.8rem;
+    }
+    .val{
+        font-size: 0.8rem;
+    }
+    .timer{
+        width: 60px;
+        height: 60px;
+        font-size: 0.9rem;
+    }
+}
